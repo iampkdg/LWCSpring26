@@ -1,0 +1,15 @@
+<!-- myEmptyState.html -->
+<!-- With illustration and action -->
+<template>
+    <lightning-empty-state 
+  illustration-name="cart:noitems" 
+  title="It's looking a little empty in here">
+  <p slot="description">Head to the product catalog to add something to your cart.</p>
+  <lightning-button 
+   variant="brand" 
+   label="Browse Products" 
+   slot="cta" 
+   onclick={handleCtaClick}>
+  </lightning-button>
+</lightning-empty-state>
+</template>
