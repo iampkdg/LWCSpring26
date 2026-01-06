@@ -39,28 +39,6 @@ export default class ChangedComponents extends LightningElement {
   }
 
   /* =========================================================
-     2) lightning-datatable – status bar + scrollbar space
-     ========================================================= */
-  dtDraftValues = [];
-
-  dtData = [
-    { id: '1', name: 'Alpha', qty: 10, wide: 'This is a wide value to help force horizontal scroll.' },
-    { id: '2', name: 'Beta', qty: 20, wide: 'More wide text… More wide text… More wide text…' },
-    { id: '3', name: 'Gamma', qty: 30, wide: 'Even more wide text… Even more wide text… Even more wide text…' }
-  ];
-
-  dtColumns = [
-    { label: 'Name', fieldName: 'name' },
-    { label: 'Qty (editable)', fieldName: 'qty', type: 'number', editable: true },
-    { label: 'Very Wide Column', fieldName: 'wide' }
-  ];
-
-  handleDatatableSave(e) {
-    // Keep draft values so the status bar stays visible (to observe scrollbar behavior change).
-    this.dtDraftValues = e.detail.draftValues;
-  }
-
-  /* =========================================================
      3) lightning-datatable – locked column icon a11y
      ========================================================= */
   lockedData = [{ id: '1', secret: 'Read-only value', other: 'Normal column' }];
@@ -75,31 +53,10 @@ export default class ChangedComponents extends LightningElement {
     { label: 'Other', fieldName: 'other' }
   ];
 
-  /* =========================================================
-     5) lightning-input – date/datetime calendar a11y
-     ========================================================= */
-  dateValue = '';
-  datetimeValue = '';
 
-  handleDateChange(e) {
-    this.dateValue = e.target.value;
-  }
-
-  handleDatetimeChange(e) {
-    this.datetimeValue = e.target.value;
-  }
 
   /* =========================================================
-     7) lightning-input-address – geolocation fallback
-     ========================================================= */
-  addressDebug = '';
-
-  handleAddressChange(e) {
-    this.addressDebug = JSON.stringify(e.detail, null, 2);
-  }
-
-  /* =========================================================
-     9) lightning-input-rich-text – default font size 13
+     4) lightning-input-rich-text – default font size 13
      ========================================================= */
   rtValue = '<p>Hello</p>';
 
@@ -108,7 +65,7 @@ export default class ChangedComponents extends LightningElement {
   }
 
   /* =========================================================
-     11) lightning-radio-group – role=status for errors
+     5) lightning-radio-group – role=status for errors
      ========================================================= */
   rgValue = '';
 
@@ -123,13 +80,14 @@ export default class ChangedComponents extends LightningElement {
     this.rgValue = e.detail.value;
   }
 
+  //earlier had to reportValidity
   validateRadio() {
     const rg = this.template.querySelector('lightning-radio-group');
     rg.reportValidity();
   }
 
   /* =========================================================
-     12) lightning-select – role=status for errors
+     6) lightning-select – role=status for errors
      ========================================================= */
   selValue = '';
 
@@ -143,7 +101,7 @@ export default class ChangedComponents extends LightningElement {
   }
 
   /* =========================================================
-     13) lightning-tree – chevron styling
+     7) lightning-tree – chevron styling
      ========================================================= */
   treeItems = [
     {
@@ -158,7 +116,7 @@ export default class ChangedComponents extends LightningElement {
   ];
 
   /* =========================================================
-     14) lightning-tree-grid – keyboard focus after expand
+     8) lightning-tree-grid – keyboard focus after expand
      ========================================================= */
   tgHideCheckbox = false;
 

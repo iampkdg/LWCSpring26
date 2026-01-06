@@ -29,38 +29,14 @@
       <hr class="slds-m-vertical_medium" />
 
       <!-- =========================================================
-           2) lightning-datatable
-           Change: Container height reduced by 3rem to show horizontal scrollbar when status bar present
-           Demo: Inline edit produces draft values => status bar appears.
-                 Place this component in a narrow region to force horizontal scroll.
-           ========================================================= -->
-      <section class="demo">
-        <h2 class="slds-text-heading_small">2 lightning-datatable status bar + horizontal scrollbar</h2>
-
-        <lightning-datatable
-          key-field="id"
-          data={dtData}
-          columns={dtColumns}
-          draft-values={dtDraftValues}
-          onsave={handleDatatableSave}>
-        </lightning-datatable>
-
-        <p class="slds-m-top_x-small slds-text-color_weak">
-          Tip: edit a Qty cell, dont save. Draft values (status bar) should appear.
-        </p>
-      </section>
-
-      <hr class="slds-m-vertical_medium" />
-
-      <!-- =========================================================
-           3) lightning-datatable accessibility (read-only lock icon)
+           2) lightning-datatable accessibility (read-only lock icon)
            Change: With displayReadOnlyIcon:true + editable:false,
                    lock icon now inside <span aria-label="Locked Column Name" role="image">...
                    Assistive text span removed.
            Demo: locked column + displayReadOnlyIcon
            ========================================================= -->
       <section class="demo">
-        <h2 class="slds-text-heading_small">3 lightning-datatable  locked column icon a11y</h2>
+        <h2 class="slds-text-heading_small">2 lightning-datatable  locked column icon a11y</h2>
 
         <lightning-datatable
           key-field="id"
@@ -75,66 +51,14 @@
 
       <hr class="slds-m-vertical_medium" />
 
-      <!-- =========================================================
-           4) lightning-flexcard
-           Change: New attribute lwr (compatibility for LWR sites)
-           NOTE: This component exists only if OmniStudio/FlexCards are installed in your org.
-           Demo: Tag shown commented-out to avoid compile errors in orgs without it.
-           ========================================================= -->
-      <section class="demo">
-        <h2 class="slds-text-heading_small">4 lightning-flexcard  lwr attribute (OmniStudio)</h2>
-
-        <!-- Uncomment ONLY if your org has lightning-flexcard available -->
-        <!--
-        <lightning-flexcard lwr></lightning-flexcard>
-        -->
-
-        <p class="slds-text-color_weak">
-          This demo is commented out because many orgs dont have <code>lightning-flexcard</code>.
-          If you do, uncomment the tag above.
-        </p>
-      </section>
-
-      <hr class="slds-m-vertical_medium" />
 
       <!-- =========================================================
-           5) lightning-input (date/datetime)
-           Change: calendar accessibility DOM changes (aria-describedby, role=status inner div,
-                   tabindex moved to day button spans, aria-* moved, aria-label added)
-           Demo: render date + datetime inputs
-           ========================================================= -->
-      <section class="demo">
-        <h2 class="slds-text-heading_small">5 lightning-input date/datetime calendar a11y</h2>
-
-        <lightning-input
-          type="date"
-          label="Date"
-          value={dateValue}
-          onchange={handleDateChange}>
-        </lightning-input>
-
-        <lightning-input
-          class="slds-m-top_small"
-          type="datetime"
-          label="Datetime"
-          value={datetimeValue}
-          onchange={handleDatetimeChange}>
-        </lightning-input>
-
-        <p class="slds-m-top_x-small slds-text-color_weak">
-          Open the calendar picker and inspect DOM/ARIA changes in DevTools.
-        </p>
-      </section>
-
-      <hr class="slds-m-vertical_medium" />
-
-      <!-- =========================================================
-           6) lightning-input required types
+           3) lightning-input required types
            Change: Required fields of type checkbox/date/datetime/time/file => <abbr aria-hidden="true">
-           Demo: render required checkbox/time/file
+          
            ========================================================= -->
       <section class="demo">
-        <h2 class="slds-text-heading_small">6 lightning-input required types a11y</h2>
+        <h2 class="slds-text-heading_small">3 lightning-input required types a11y</h2>
 
         <lightning-input type="checkbox" label="Required checkbox" required></lightning-input>
 
@@ -149,73 +73,13 @@
 
       <hr class="slds-m-vertical_medium" />
 
-      <!-- =========================================================
-           7) lightning-input-address
-           Change: If Geolocation times out after 10s => defaults to SF, CA (lat/long given)
-           Demo: render address input and show onchange detail
-           ========================================================= -->
-      <section class="demo">
-        <h2 class="slds-text-heading_small">7 lightning-input-address geolocation fallback</h2>
-
-        <lightning-input-address
-          address-label="Address"
-          street-label="Street"
-          city-label="City"
-          province-label="State/Province"
-          postal-code-label="Postal Code"
-          country-label="Country"
-          onchange={handleAddressChange}>
-        </lightning-input-address>
-
-        <p class="slds-m-top_small">Last onchange detail:</p>
-        <pre class="codebox">{addressDebug}</pre>
-
-        <p class="slds-m-top_x-small slds-text-color_weak">
-          To observe the 10s fallback, test with location blocked or slow. Behavior may vary by browser/security.
-        </p>
-      </section>
-
-      <hr class="slds-m-vertical_medium" />
 
       <!-- =========================================================
-           8) lightning-input-field
-           Change: date/datetime calendar has same a11y changes as lightning-input
-           NOTE: Needs record context + real field API name that exists in your org.
-           Demo: Provided as commented block to avoid runtime errors without recordId/field.
-           ========================================================= -->
-      <section class="demo">
-        <h2 class="slds-text-heading_small">8 lightning-input-field  date/datetime calendar a11y</h2>
-
-        <!--
-          IMPORTANT:
-          - Put this component on a Record Page so recordId is provided
-          - Replace Some_Date__c with a real date/datetime field in your org
-        -->
-        <!--
-        <lightning-record-edit-form object-api-name="Account" record-id={recordId}>
-          <lightning-input-field field-name="Name"></lightning-input-field>
-          <lightning-input-field field-name="Some_Date__c"></lightning-input-field>
-          <div class="slds-m-top_small">
-            <lightning-button type="submit" variant="brand" label="Save"></lightning-button>
-          </div>
-        </lightning-record-edit-form>
-        -->
-
-        <p class="slds-text-color_weak">
-          Demo code is commented out because <code>lightning-input-field</code> needs a recordId and real field API name.
-          Uncomment it after placing this component on a record page and updating the field name.
-        </p>
-      </section>
-
-      <hr class="slds-m-vertical_medium" />
-
-      <!-- =========================================================
-           9) lightning-input-rich-text
+           4) lightning-input-rich-text
            Change: default font size now 13
-           Demo: render rich text editor
            ========================================================= -->
       <section class="demo">
-        <h2 class="slds-text-heading_small">9 lightning-input-rich-text default font size</h2>
+        <h2 class="slds-text-heading_small">4 lightning-input-rich-text default font size</h2>
 
         <lightning-input-rich-text value={rtValue} onchange={handleRichTextChange}></lightning-input-rich-text>
 
@@ -226,37 +90,13 @@
       <hr class="slds-m-vertical_medium" />
 
       <!-- =========================================================
-           10) lightning-omniscript
-           Change: New attribute lwr (compatibility for LWR sites)
-           NOTE: OmniStudio component, not available in many orgs.
-           Demo: commented to avoid compile errors.
-           ========================================================= -->
-
-    
-      <section class="demo">
-        <h2 class="slds-text-heading_small">10 lightning-omniscript lwr attribute (OmniStudio)</h2>
-
-        <!-- Uncomment ONLY if your org has lightning-omniscript available -->
-        <!--
-        <lightning-omniscript lwr></lightning-omniscript>
-        -->
-
-        <p class="slds-text-color_weak">
-          This demo is commented out because many orgs don’t have <code>lightning-omniscript</code>.
-          If you do, uncomment the tag above.
-        </p>
-      </section>
-
-      <hr class="slds-m-vertical_medium" />
-
-      <!-- =========================================================
-           11) lightning-radio-group
+           5) lightning-radio-group
            Change: role="status" container with empty div on load;
                    on field-level error renders <span> assistive text with field label
            Demo: required radio group + manual reportValidity()
            ========================================================= -->
       <section class="demo">
-        <h2 class="slds-text-heading_small">11 lightning-radio-group field error a11y</h2>
+        <h2 class="slds-text-heading_small">5 lightning-radio-group field error a11y</h2>
 
         <lightning-radio-group
           name="rg"
@@ -275,13 +115,13 @@
       <hr class="slds-m-vertical_medium" />
 
       <!-- =========================================================
-           12) lightning-select
+           6) lightning-select
            Change: role="status" now contains empty div on load;
                    on field-level error renders <span> assistive text with field label
            Demo: required select + reportValidity()
            ========================================================= -->
       <section class="demo">
-        <h2 class="slds-text-heading_small">12 lightning-select field error a11y</h2>
+        <h2 class="slds-text-heading_small">6 lightning-select field error a11y</h2>
 
         <lightning-select label="Choose (required)" required value={selValue} onchange={handleSelectChange}>
           <option value="">-- none --</option>
@@ -297,12 +137,12 @@
       <hr class="slds-m-vertical_medium" />
 
       <!-- =========================================================
-           13) lightning-tree
+           7) lightning-tree
            Change: chevron icon uses bare variant and displays in blue
            Demo: simple tree
            ========================================================= -->
       <section class="demo">
-        <h2 class="slds-text-heading_small">13 lightning-tree chevron styling</h2>
+        <h2 class="slds-text-heading_small">7 lightning-tree chevron styling</h2>
 
         <lightning-tree items={treeItems} header="Folders"></lightning-tree>
 
@@ -314,7 +154,7 @@
       <hr class="slds-m-vertical_medium" />
 
       <!-- =========================================================
-           14) lightning-tree-grid
+           8) lightning-tree-grid
            Change: After Right Arrow expands a row, next Right Arrow focuses checkbox column (if not hidden)
            Demo: tree grid + toggle hide-checkbox-column
            How to test:
@@ -323,7 +163,7 @@
              3) Press Right Arrow again => focus should move to checkbox column (if visible)
            ========================================================= -->
       <section class="demo">
-        <h2 class="slds-text-heading_small">14 lightning-tree-grid  keyboard focus after expand</h2>
+        <h2 class="slds-text-heading_small">8 lightning-tree-grid  keyboard focus after expand</h2>
 
         <lightning-tree-grid
           columns={tgColumns}
