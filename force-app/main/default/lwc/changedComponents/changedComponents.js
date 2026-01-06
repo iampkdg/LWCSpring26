@@ -23,18 +23,19 @@ export default class ChangedComponents extends LightningElement {
   }
 
   handleComboboxSubmit(e) {
-    e.preventDefault();
 
-    // Triggers browser-like validation. New behavior: combobox participates in validation + submissions.
+    //This below commented code was needed before Spring'26 to check for the validation part. From Spring'26 the validation is performed in the browser itself and we don't have check using the validity methods. 
+
+
+    /* ===================
     const cb = this.template.querySelector('lightning-combobox');
     if (!cb.checkValidity()) {
       cb.reportValidity(); // should focus the invalid component when submitted
+      console.log('Validation Failed');
       return;
     }
+    ====================== */
 
-    // Demonstrate form submission value
-    const fd = new FormData(e.target);
-    this.comboSubmitted = fd.get('country');
   }
 
   /* =========================================================
