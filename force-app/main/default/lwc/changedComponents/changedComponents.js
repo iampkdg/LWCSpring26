@@ -120,24 +120,47 @@ export default class ChangedComponents extends LightningElement {
      ========================================================= */
   tgHideCheckbox = false;
 
-  tgColumns = [
-    { type: 'text', fieldName: 'label', label: 'Name' },
-    { type: 'number', fieldName: 'size', label: 'Size' }
-  ];
+    tgColumns = [
+        { type: 'text', fieldName: 'label', label: 'Name' },
+        { type: 'number', fieldName: 'size', label: 'Size' }
+    ];
 
-  tgData = [
-    {
-      name: 'node-1',
-      label: 'Node 1',
-      size: 10,
-      _children: [
-        { name: 'node-1-1', label: 'Child 1', size: 5 },
-        { name: 'node-1-2', label: 'Child 2', size: 5 }
-      ]
+    tgData = [
+        {
+            name: 'node-1',
+            label: 'Node 1',
+            size: 10,
+            _children: [
+                { name: 'node-1-1', label: 'Child 1', size: 5 },
+                { name: 'node-1-2', label: 'Child 2', size: 5 }
+            ]
+        }
+    ];
+
+    // When the wrapper gets focus (via Tab), push focus into the grid
+    handleTreeGridWrapperFocus() {
+        this.focusTreeGrid();
     }
-  ];
 
-  toggleTreeGridCheckbox(e) {
-    this.tgHideCheckbox = e.target.checked;
-  }
+    toggleTreeGridCheckbox(e) {
+        this.tgHideCheckbox = e.target.checked;
+
+        // Toggling causes rerender; restore focus back to the grid after paint
+        requestAnimationFrame(() => this.focusTreeGrid());
+    }
+
+    focusTreeGrid() {
+        // Try focusing the actual focusable element inside the tree grid's shadow DOM.
+        // We can't query inside shadow, but focusing the host often works,
+        // and focusing the wrapper always ensures arrow key handlers are active.
+        const tree = this.template.querySelector('lightning-tree-grid.treeGrid');
+        const wrapper = this.template.querySelector('.treeGridWrapper');
+
+        // Prefer focusing tree grid host if possible; otherwise wrapper is still useful.
+        if (tree && typeof tree.focus === 'function') {
+            tree.focus();
+        } else if (wrapper) {
+            wrapper.focus();
+        }
+    }
 }

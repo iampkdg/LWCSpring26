@@ -165,21 +165,31 @@
       <section class="demo">
         <h2 class="slds-text-heading_small">8 lightning-tree-grid  keyboard focus after expand</h2>
 
-        <lightning-tree-grid
-          columns={tgColumns}
-          data={tgData}
-          key-field="name"
-          hide-checkbox-column={tgHideCheckbox}>
-        </lightning-tree-grid>
+        <div
+        class="treeGridWrapper"
+        tabindex="0"
+        role="group"
+        aria-label="Tree grid container"
+        onfocus={handleTreeGridWrapperFocus}>
 
-        <div class="slds-m-top_small">
-          <lightning-input
+        <lightning-tree-grid
+            class="treeGrid"
+            columns={tgColumns}
+            data={tgData}
+            key-field="name"
+            hide-checkbox-column={tgHideCheckbox}
+            aria-label="Job hierarchy tree grid">
+        </lightning-tree-grid>
+    </div>
+
+    <div class="slds-m-top_small">
+        <lightning-input
             type="toggle"
             label="Hide checkbox column"
             checked={tgHideCheckbox}
             onchange={toggleTreeGridCheckbox}>
-          </lightning-input>
-        </div>
+        </lightning-input>
+    </div>
       </section>
 
     </div>
