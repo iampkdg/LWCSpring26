@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Injection Practice</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 16px;
+            margin-right: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        #output {
+            min-height: 80px;
+            padding: 16px;
+            border: 2px solid #555;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOM Injection Lab</h1>
+
+    <p>Enter text or simple HTML:</p>
+
+    <input
+        id="userInput"
+        value="<h2>Hello from injected HTML</h2><p>This was created using innerHTML.</p>"
+    />
+
+    <button id="htmlButton">Inject using innerHTML</button>
+    <button id="textButton">Inject using textContent</button>
+    <button id="clearButton">Clear</button>
+
+    <div id="output"></div>
+
+    <script>
+        const input = document.querySelector("#userInput");
+        const output = document.querySelector("#output");
+
+        document
+            .querySelector("#htmlButton")
+            .addEventListener("click", () => {
+                output.innerHTML = input.value;
+            });
+
+        document
+            .querySelector("#textButton")
+            .addEventListener("click", () => {
+                output.textContent = input.value;
+            });
+
+        document
+            .querySelector("#clearButton")
+            .addEventListener("click", () => {
+                output.replaceChildren();
+            });
+    </script>
+</body>
+</html>
